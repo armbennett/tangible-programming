@@ -2,6 +2,21 @@
 <html>
 <script src="https://cdn.jsdelivr.net/gh/aframevr/aframe@1c2407b26c61958baa93967b5412487cd94b290b/dist/aframe-master.min.js"></script>
 <script src="/tangible-programming/aframe-ar.js"></script>
+<script>
+	 AFRAME.registerComponent('registerevents', {
+    init: function () {
+      const marker = this.el;
+      marker.addEventListener("markerFound", ()=> {
+        var markerId = marker.id;
+        console.log('Marker Found: ', markerId);
+      });
+      marker.addEventListener("markerLost",() =>{
+        var markerId = marker.id;
+        console.log('Marker Lost: ', markerId);
+      });
+    },
+  });
+	</script>
 <body style='margin : 0px; overflow: hidden;'>
 	<a-scene embedded arjs renderer='precision: medium;'>
 		<a-marker type="pattern" url='/tangible-programming/pattern-run1.patt'>
